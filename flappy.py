@@ -1,11 +1,22 @@
 import pygame
 
+black = (0,0,0)
+white = (255,255,255)
+
 pygame.init()
 
 surface = pygame.display.set_mode((800,400))
 pygame.display.set_caption("Flappy")
-
 clock = pygame.time.Clock()
+
+#load image
+img = pygame.image.load('flappy.png')
+#location
+x = 150
+y = 200
+
+def flappy(x, y, image):
+	surface.blit(img, (x,y))
 
 game_over = False
 
