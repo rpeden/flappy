@@ -1,2 +1,2 @@
 # flappy
-flappy bird using Pygame
+A flappy bird using Pygame.
