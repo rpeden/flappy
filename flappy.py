@@ -15,8 +15,10 @@ img = pygame.image.load('flappy.png')
 x = 150
 y = 200
 
+y_move = 5
+
 def flappy(x, y, image):
-	surface.blit(img, (x,y))
+	surface.blit(image, (x,y))
 
 game_over = False
 
@@ -24,6 +26,17 @@ while not game_over:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			game_over = True
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_UP:
+				y_move = -5
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_UP:
+				y_move = 5
+
+	y += y_move
+	surface.fill(black)
+	flappy(x,y,img)
+
 	pygame.display.update()
 	clock.tick(60)
 
