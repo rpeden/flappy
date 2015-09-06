@@ -20,6 +20,24 @@ y = 200
 
 y_move = 5
 
+def message_surface(text):
+	small_text = pygame.font.Font('freesansbold.ttf', 20)
+	large_text = pygame.font.Font('freesansbold.ttf', 100)
+
+	title_text_surface, title_text_rectangle = make_text_objects(text, large_text)
+	title_text_rectangle.center = screen_width / 2, screen_height / 2
+	surface.blit(title_text_surface, title_text_rectangle)
+
+	small_text_surface, small_text_rectangle = make_text_objects('Press any key to continue', small_text)
+	small_text_rectangle.center = screen_width / 2, (screen_height / 2) + 100
+	surface.blit(small_text_surface, small_text_rectangle)
+
+	pygame.display.update()
+	time.sleep(1)
+
+	while replay_or_quit() == None:
+		clock.tick()
+
 def end_game():
 	pygame.quit()
 	quit()
