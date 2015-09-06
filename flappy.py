@@ -15,6 +15,18 @@ clock = pygame.time.Clock()
 #load image
 img = pygame.image.load('flappy.png')
 
+def replay_or_quit():
+	for event in pygame.event.get([pygame.KEYDOWN, pygame.QUIT]):
+		if event.type == pygame.QUIT:
+			pygame.quit()
+			quit()
+		elif if event.type == pygame.KEYDOWN:
+			continue
+
+		return event.key
+
+	return None
+
 def make_text_objects(text, font):
 	text_surface = font.render(text, True, white)
 	return text_suteface, text_surface.get_rect()
