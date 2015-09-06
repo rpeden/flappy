@@ -14,11 +14,10 @@ clock = pygame.time.Clock()
 
 #load image
 img = pygame.image.load('flappy.png')
-#location
-x = 150
-y = 200
 
-y_move = 5
+def make_text_objects(text, font):
+	text_surface = font.render(text, True, white)
+	return text_suteface, text_surface.get_rect()
 
 def message_surface(text):
 	small_text = pygame.font.Font('freesansbold.ttf', 20)
@@ -38,6 +37,8 @@ def message_surface(text):
 	while replay_or_quit() == None:
 		clock.tick()
 
+	main()
+
 def end_game():
 	pygame.quit()
 	quit()
@@ -45,28 +46,38 @@ def end_game():
 def flappy(x, y, image):
 	surface.blit(image, (x,y))
 
-game_over = False
 
-while not game_over:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			game_over = True
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_UP:
-				y_move = -5
-		if event.type == pygame.KEYUP:
-			if event.key == pygame.K_UP:
-				y_move = 5
 
-	y += y_move
-	surface.fill(black)
-	flappy(x,y,img)
+def main():
+	game_over = False
 
-	if y > screen_height or y < 0:
-		end_game()
+	#location
+	x = 150
+	y = 200
 
-	pygame.display.update()
-	clock.tick(60)
+	y_move = 5
 
+	while not game_over:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				game_over = True
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_UP:
+					y_move = -5
+			if event.type == pygame.KEYUP:
+				if event.key == pygame.K_UP:
+					y_move = 5
+
+		y += y_move
+		surface.fill(black)
+		flappy(x,y,img)
+
+		if y > screen_height or y < 0:
+			end_game()
+
+		pygame.display.update()
+		clock.tick(60)
+
+main()
 pygame.quit()
 quit()
