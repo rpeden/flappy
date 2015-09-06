@@ -5,7 +5,10 @@ white = (255,255,255)
 
 pygame.init()
 
-surface = pygame.display.set_mode((800,400))
+screen_width = 800
+screen_height = 500
+
+surface = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Flappy")
 clock = pygame.time.Clock()
 
@@ -16,6 +19,10 @@ x = 150
 y = 200
 
 y_move = 5
+
+def end_game():
+	pygame.quit()
+	quit()
 
 def flappy(x, y, image):
 	surface.blit(image, (x,y))
@@ -36,6 +43,9 @@ while not game_over:
 	y += y_move
 	surface.fill(black)
 	flappy(x,y,img)
+
+	if y > screen_height or y < 0:
+		end_game()
 
 	pygame.display.update()
 	clock.tick(60)
