@@ -1,4 +1,5 @@
 import pygame
+import time
 
 black = (0,0,0)
 white = (255,255,255)
@@ -29,7 +30,7 @@ def replay_or_quit():
 
 def make_text_objects(text, font):
 	text_surface = font.render(text, True, white)
-	return text_suteface, text_surface.get_rect()
+	return text_surface, text_surface.get_rect()
 
 def message_surface(text):
 	small_text = pygame.font.Font('freesansbold.ttf', 20)
@@ -52,8 +53,7 @@ def message_surface(text):
 	main()
 
 def end_game():
-	pygame.quit()
-	quit()
+	message_surface("Splat!")
 
 def flappy(x, y, image):
 	surface.blit(image, (x,y))
