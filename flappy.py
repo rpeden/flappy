@@ -17,7 +17,7 @@ clock = pygame.time.Clock()
 img = pygame.image.load('flappy.png')
 
 def replay_or_quit():
-	for event in pygame.event.get([pygame.KEYDOWN, pygame.QUIT]):
+	for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			quit()
