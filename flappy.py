@@ -1,5 +1,6 @@
 import pygame
 import time
+from random import randint
 
 black = (0,0,0)
 white = (255,255,255)
@@ -9,12 +10,19 @@ pygame.init()
 screen_width = 800
 screen_height = 500
 
+image_width = 113
+image_height = 80
+
 surface = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Flappy")
 clock = pygame.time.Clock()
 
 #load image
 img = pygame.image.load('flappy.png')
+
+def blocks(x_block, y_block, block_width, block_height, gap):
+	pygame.draw.rect(surface, white, [x_block, y_block, block_width, block_height])
+	pygame.draw.rect(surface, white, [x_block, y_block + block_height + gap, block_width, block_height])
 
 def replay_or_quit():
 	for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
@@ -69,6 +77,14 @@ def main():
 
 	y_move = 5
 
+	x_block = screen_width
+	y_block = 0
+
+	block_width = 75
+	block_height = randint(0,screen_height)
+	gap = image_height * 2.5
+	block_move = 3
+
 	while not game_over:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -83,6 +99,9 @@ def main():
 		y += y_move
 		surface.fill(black)
 		flappy(x,y,img)
+
+		blocks(x_block, y_block, block_width, block_height, gap)
+		x_block -= block_move
 
 		if y > screen_height or y < 0:
 			end_game()
